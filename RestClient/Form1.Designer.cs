@@ -28,13 +28,82 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.txtRequestURI = new System.Windows.Forms.TextBox();
+            this.txtResponse = new System.Windows.Forms.TextBox();
+            this.btnGo = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // txtRequestURI
+            // 
+            this.txtRequestURI.Location = new System.Drawing.Point(188, 33);
+            this.txtRequestURI.Name = "txtRequestURI";
+            this.txtRequestURI.Size = new System.Drawing.Size(424, 26);
+            this.txtRequestURI.TabIndex = 0;
+            this.txtRequestURI.TextChanged += new System.EventHandler(this.txtRestURI_TextChanged);
+            // 
+            // txtResponse
+            // 
+            this.txtResponse.Location = new System.Drawing.Point(188, 82);
+            this.txtResponse.Multiline = true;
+            this.txtResponse.Name = "txtResponse";
+            this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtResponse.Size = new System.Drawing.Size(539, 341);
+            this.txtResponse.TabIndex = 1;
+            // 
+            // btnGo
+            // 
+            this.btnGo.Location = new System.Drawing.Point(632, 26);
+            this.btnGo.Name = "btnGo";
+            this.btnGo.Size = new System.Drawing.Size(95, 41);
+            this.btnGo.TabIndex = 2;
+            this.btnGo.Text = "Go";
+            this.btnGo.UseVisualStyleBackColor = true;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(68, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Request URI";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(68, 85);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Response";
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnGo);
+            this.Controls.Add(this.txtResponse);
+            this.Controls.Add(this.txtRequestURI);
+            this.Name = "Form1";
+            this.Text = "Rest Client";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox txtRequestURI;
+        private System.Windows.Forms.TextBox txtResponse;
+        private System.Windows.Forms.Button btnGo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

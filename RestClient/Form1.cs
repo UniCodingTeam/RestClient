@@ -16,5 +16,22 @@ namespace RestClient
         {
             InitializeComponent();
         }
+
+        private void txtRestURI_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #region UI Event Handlers
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+            RestClient rClient = new RestClient();
+            rClient.endPoint = txtRequestURI.Text;
+
+            string strResponse = string.Empty;
+            strResponse = rClient.makeRequest();
+            txtResponse.Text = strResponse;
+        }
+        #endregion
     }
 }
