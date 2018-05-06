@@ -29,9 +29,22 @@ namespace RestClient
             RestClient rClient = new RestClient();
             rClient.endPoint = txtRequestURI.Text;
 
+            if (rdoRollOwn.Checked)
+            {
+                rClient.authTech = authenicationTechnique.RollYourOwn;
+                debugOutput("AuthTechnique: Roll Your Own");
+                debugOutput("AuthType: Basic");
+            }
+            else
+            {
+                rClient.authTech = authenicationTechnique.NetworkCredential;
+                debugOutput("AuthTechnique: NetworkCredential");
+                debugOutput("AuthType: Netcred decides");
+            }
+
             string strResponse = string.Empty;
             strResponse = rClient.makeRequest();
-            txtResponse.Text = strResponse;
+            debugOutput(strResponse);
         }
         
 
@@ -70,7 +83,8 @@ namespace RestClient
         {
             try
             {
-                var jPerson = JsonConvert.DeserializeObject<dynamic>(strJSON);
+                //var jPerson = JsonConvert.DeserializeObject<dynamic>(strJSON);
+                var jPerson = JsonConvert.DeserializeObject<jsonPersonArray>(strJSON);
 
                 debugOutput("Here is our JSON object: " + jPerson.ToString());
                 debugOutput("Here is our firstname: " + jPerson.firstname);
@@ -119,6 +133,43 @@ namespace RestClient
         private void btnDeserialise_Click_2(object sender, EventArgs e)
         {
             deserialiseJSON(txtInput.Text);
+        }
+
+        private void btnGo_Click_1(object sender, EventArgs e)
+        {
+            RestClient rClient = new RestClient();
+            rClient.endPoint = txtRequestURI.Text;
+            if (rdoBasicAuth.Checked)
+            {
+                rClient.authTech = authenicationTechnique.RollYourOwn;
+                rClient.authType = authenticationType.Basic;
+                rClient.userName = txtUsername.Text;
+                rClient.userPassword = txtPassword.Text;
+            }
+            else
+            {
+                rClient.authTech = authenicationTechnique.Token;
+                rClient.authType = authenticationType.Token;
+                rClient.token = txtToken.Text;
+            }
+            
+            
+
+            string strResponse = string.Empty;
+            strResponse = rClient.makeRequest();
+            if (rdoBasicAuth.Checked)
+            {
+                debugOutput("URI" + txtRequestURI.Text + " Username:" + txtUsername.Text + " Passord:" + txtPassword.Text + " " + strResponse);
+            }
+            else
+            {
+                debugOutput(strResponse);
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
